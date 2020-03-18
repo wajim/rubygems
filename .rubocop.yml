@@ -5,7 +5,7 @@ AllCops:
     - 'lib/rubygems/resolver/molinillo/**/*'
     - 'pkg/**/*'
     - 'tmp/**/*'
-  TargetRubyVersion: 2.3
+  TargetRubyVersion: 2.4
 
 Layout/AccessModifierIndentation:
   Enabled: true

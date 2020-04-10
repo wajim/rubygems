@@ -1,4 +1,4 @@
-BUNDLE-INJECT(1)                                              BUNDLE-INJECT(1)
+BUNDLE-INJECT(1)            General Commands Manual           BUNDLE-INJECT(1)
 
 
 
@@ -16,7 +16,6 @@ DESCRIPTION
        Gemfile.lock if it isn't listed yet.
 
        Example:
-
 
 
            bundle install

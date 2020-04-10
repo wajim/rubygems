@@ -1,4 +1,4 @@
-BUNDLE-INSTALL(1)                                            BUNDLE-INSTALL(1)
+BUNDLE-INSTALL(1)           General Commands Manual          BUNDLE-INSTALL(1)
 
 
 
@@ -206,11 +206,11 @@ SUDO USAGE
        You should never use sudo bundle install. This is because several other
        steps in bundle install must be performed as the current user:
 
-       o   Updating your Gemfile.lock
+       O   Updating your Gemfile.lock
 
-       o   Updating your vendor/cache, if necessary
+       O   Updating your vendor/cache, if necessary
 
-       o   Checking out private git repositories using your user's SSH keys
+       O   Checking out private git repositories using your user's SSH keys
 
 
 
@@ -248,7 +248,6 @@ INSTALLING GROUPS
        environments.
 
        For a simple illustration, consider the following Gemfile(5):
-
 
 
            source 'https://rubygems.org'
@@ -323,7 +322,6 @@ CONSERVATIVE UPDATING
        Let's take a look at an example. Here's your original Gemfile(5):
 
 
-
            source 'https://rubygems.org'
 
            gem 'actionpack', '2.3.8'
@@ -341,7 +339,6 @@ CONSERVATIVE UPDATING
        your Gemfile(5).
 
        Next, you modify your Gemfile(5) to:
-
 
 
            source 'https://rubygems.org'
@@ -388,10 +385,10 @@ CONSERVATIVE UPDATING
        work, run bundle update(1) bundle-update.1.html.
 
 SEE ALSO
-       o   Gem                           install                          docs
+       O   Gem                           install                          docs
            http://guides.rubygems.org/rubygems-basics/#installing-gems
 
-       o   Rubygems signing docs http://guides.rubygems.org/security/
+       O   Rubygems signing docs http://guides.rubygems.org/security/
 
 
 

@@ -1,4 +1,4 @@
-BUNDLE-LOCK(1)                                                  BUNDLE-LOCK(1)
+BUNDLE-LOCK(1)              General Commands Manual             BUNDLE-LOCK(1)
 
 
 

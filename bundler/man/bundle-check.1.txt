@@ -1,4 +1,4 @@
-BUNDLE-CHECK(1)                                                BUNDLE-CHECK(1)
+BUNDLE-CHECK(1)             General Commands Manual            BUNDLE-CHECK(1)
 
 
 

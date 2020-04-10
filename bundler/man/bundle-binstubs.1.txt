@@ -1,4 +1,4 @@
-BUNDLE-BINSTUBS(1)                                          BUNDLE-BINSTUBS(1)
+BUNDLE-BINSTUBS(1)          General Commands Manual         BUNDLE-BINSTUBS(1)
 
 
 

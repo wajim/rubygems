@@ -74,82 +74,68 @@ task :check_rvm_integration do
 end
 
 namespace :man do
-  if RUBY_ENGINE == "jruby"
-    task(:build) {}
-  else
-    begin
-      Spec::Rubygems.gem_require("ronn")
-    rescue Gem::LoadError => e
-      desc "Build the man pages"
-      task(:build) { abort "We couldn't activate ronn (#{e.requirement}). Try `gem install ronn:'#{e.requirement}'` to be able to build the help pages" }
+  directory "man"
 
-      desc "Verify man pages are in sync"
-      task(:check) { abort "We couldn't activate ronn (#{e.requirement}). Try `gem install ronn:'#{e.requirement}'` to be able to build the help pages" }
-    else
-      directory "man"
+  index = []
+  sources = Dir["man/*.ronn"].map {|f| File.basename(f, ".ronn") }
+  sources.map do |basename|
+    ronn = "man/#{basename}.ronn"
+    manual_section = ".1" unless basename =~ /\.(\d+)\Z/
+    roff = "man/#{basename}#{manual_section}"
 
-      index = []
-      sources = Dir["man/*.ronn"].map {|f| File.basename(f, ".ronn") }
-      sources.map do |basename|
-        ronn = "man/#{basename}.ronn"
-        manual_section = ".1" unless basename =~ /\.(\d+)\Z/
-        roff = "man/#{basename}#{manual_section}"
+    index << [ronn, File.basename(roff)]
 
-        index << [ronn, File.basename(roff)]
+    file roff => ["man", ronn] do
+      sh "bin/ronn --warnings --roff --pipe --date #{Time.now.strftime("%Y-%m-%d")} #{ronn} > #{roff}"
+    end
 
-        file roff => ["man", ronn] do
-          sh "bin/ronn --warnings --roff --pipe --date #{Time.now.strftime("%Y-%m-%d")} #{ronn} > #{roff}"
-        end
+    file "#{roff}.txt" => roff do
+      sh "groff -Wbreak -mtty-char -mandoc -Tascii -rHY=0 #{roff} | col -xb > #{roff}.txt"
+    end
 
-        file "#{roff}.txt" => roff do
-          sh "groff -Wbreak -mtty-char -mandoc -Tascii -rHY=0 #{roff} | col -xb > #{roff}.txt"
-        end
+    task :build_all_pages => "#{roff}.txt"
+  end
 
-        task :build_all_pages => "#{roff}.txt"
+  file "index.txt" do
+    index.map! do |(ronn, roff)|
+      [File.read(ronn).split(" ").first, roff]
+    end
+    index = index.sort_by(&:first)
+    justification = index.map {|(n, _f)| n.length }.max + 4
+    File.open("man/index.txt", "w") do |f|
+      index.each do |name, filename|
+        f << name.ljust(justification) << filename << "\n"
       end
+    end
+  end
+  task :build_all_pages => "index.txt"
 
-      file "index.txt" do
-        index.map! do |(ronn, roff)|
-          [File.read(ronn).split(" ").first, roff]
-        end
-        index = index.sort_by(&:first)
-        justification = index.map {|(n, _f)| n.length }.max + 4
-        File.open("man/index.txt", "w") do |f|
-          index.each do |name, filename|
-            f << name.ljust(justification) << filename << "\n"
-          end
-        end
-      end
-      task :build_all_pages => "index.txt"
+  desc "Remove all built man pages"
+  task :clean do
+    leftovers = Dir["man/*"].reject do |f|
+      File.extname(f) == ".ronn"
+    end
+    rm leftovers if leftovers.any?
+  end
 
-      desc "Remove all built man pages"
-      task :clean do
-        leftovers = Dir["man/*"].reject do |f|
-          File.extname(f) == ".ronn"
-        end
-        rm leftovers if leftovers.any?
-      end
+  desc "Build the man pages"
+  task :build => ["man:clean", "man:build_all_pages"]
 
-      desc "Build the man pages"
-      task :build => ["man:clean", "man:build_all_pages"]
+  desc "Verify man pages are in sync"
+  task :check => :build do
+    sh("git diff --quiet --ignore-all-space man") do |outcome, _|
+      if outcome
+        puts
+        puts "Manpages are in sync!"
+        puts
+      else
+        sh("GIT_PAGER=cat git diff --ignore-all-space man")
 
-      desc "Verify man pages are in sync"
-      task :check => :build do
-        sh("git diff --quiet --ignore-all-space man") do |outcome, _|
-          if outcome
-            puts
-            puts "Manpages are in sync!"
-            puts
-          else
-            sh("GIT_PAGER=cat git diff --ignore-all-space man")
+        puts
+        puts "Man pages are out of sync. Above you can see the diff that got generated from rebuilding them. Please review and commit the results."
+        puts
 
-            puts
-            puts "Man pages are out of sync. Above you can see the diff that got generated from rebuilding them. Please review and commit the results."
-            puts
-
-            exit(1)
-          end
-        end
+        exit(1)
       end
     end
   end

@@ -1,4 +1,4 @@
-BUNDLE-CACHE(1)                                                BUNDLE-CACHE(1)
+BUNDLE-CACHE(1)             General Commands Manual            BUNDLE-CACHE(1)
 
 
 
@@ -33,7 +33,6 @@ REMOTE FETCHING
        of the gems in vendor/cache.
 
        For instance, consider this Gemfile(5):
-
 
 
            source "https://rubygems.org"

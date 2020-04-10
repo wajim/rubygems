@@ -1,4 +1,4 @@
-BUNDLE-DOCTOR(1)                                              BUNDLE-DOCTOR(1)
+BUNDLE-DOCTOR(1)            General Commands Manual           BUNDLE-DOCTOR(1)
 
 
 
@@ -15,15 +15,15 @@ DESCRIPTION
 
        Examples of common problems caught by bundle-doctor include:
 
-       o   Invalid Bundler settings
+       O   Invalid Bundler settings
 
-       o   Mismatched Ruby versions
+       O   Mismatched Ruby versions
 
-       o   Mismatched platforms
+       O   Mismatched platforms
 
-       o   Uninstalled gems
+       O   Uninstalled gems
 
-       o   Missing dependencies
+       O   Missing dependencies
 
 
 

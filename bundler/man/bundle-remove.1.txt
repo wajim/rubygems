@@ -1,4 +1,4 @@
-BUNDLE-REMOVE(1)                                              BUNDLE-REMOVE(1)
+BUNDLE-REMOVE(1)            General Commands Manual           BUNDLE-REMOVE(1)
 
 
 

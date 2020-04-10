@@ -1,4 +1,4 @@
-BUNDLE-PRISTINE(1)                                          BUNDLE-PRISTINE(1)
+BUNDLE-PRISTINE(1)          General Commands Manual         BUNDLE-PRISTINE(1)
 
 
 

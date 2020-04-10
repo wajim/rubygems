@@ -1,4 +1,4 @@
-GEMFILE(5)                                                          GEMFILE(5)
+GEMFILE(5)                    File Formats Manual                   GEMFILE(5)
 
 
 
@@ -20,7 +20,6 @@ SYNTAX
 GLOBAL SOURCES
        At  the  top  of  the  Gemfile, add a line for the Rubygems source that
        contains the gems listed in the Gemfile.
-
 
 
            source "https://rubygems.org"
@@ -47,14 +46,12 @@ GLOBAL SOURCES
        being stored in plain text in version control.
 
 
-
            bundle config gems.example.com user:password
 
 
 
        For some sources, like a company Gemfury account, it may be  easier  to
        include the credentials in the Gemfile as part of the source URL.
-
 
 
            source "https://user:password@gems.example.com"
@@ -76,7 +73,6 @@ RUBY
        compatible with.
 
 
-
            ruby "1.9.3"
 
 
@@ -88,14 +84,14 @@ RUBY
        What exactly is an Engine? - A Ruby engine is an implementation of  the
        Ruby language.
 
-       o   For  background:  the  reference  or original implementation of the
+       O   For  background:  the  reference  or original implementation of the
            Ruby  programming  language  is  called  Matz's  Ruby   Interpreter
            https://en.wikipedia.org/wiki/Ruby_MRI,  or  MRI for short. This is
            named after Ruby creator Yukihiro Matsumoto, also  known  as  Matz.
            MRI  is also known as CRuby, because it is written in C. MRI is the
            most widely used Ruby engine.
 
-       o   Other implementations https://www.ruby-lang.org/en/about/  of  Ruby
+       O   Other implementations https://www.ruby-lang.org/en/about/  of  Ruby
            exist. Some of the more well-known implementations include Rubinius
            https://rubinius.com/, and JRuby http://jruby.org/. Rubinius is  an
            alternative  implementation  of  Ruby  written in Ruby. JRuby is an
@@ -109,14 +105,12 @@ RUBY
        is "ruby" the engine version specified must match the Ruby version.
 
 
-
            ruby "1.8.7", :engine => "jruby", :engine_version => "1.6.7"
 
 
 
    PATCHLEVEL
        Each application may specify a Ruby patchlevel.
-
 
 
            ruby "2.0.0", :patchlevel => "247"
@@ -131,14 +125,12 @@ GEMS
        For each gem requirement, list a single gem line.
 
 
-
            gem "nokogiri"
 
 
 
    VERSION
        Each gem MAY have one or more version specifiers.
-
 
 
            gem "nokogiri", ">= 1.4.2"
@@ -153,7 +145,6 @@ GEMS
        file from being autorequired.
 
 
-
            gem "redis", :require => ["redis/connection/hiredis", "redis"]
            gem "webmock", :require => false
            gem "byebug", :require => true
@@ -162,7 +153,6 @@ GEMS
 
        The argument defaults to the name of the gem. For  example,  these  are
        identical:
-
 
 
            gem "nokogiri"
@@ -177,7 +167,6 @@ GEMS
        group.
 
 
-
            gem "rspec", :group => :test
            gem "wirble", :groups => [:development, :test]
 
@@ -185,7 +174,6 @@ GEMS
 
        The  Bundler  runtime  allows  its  two main methods, Bundler.setup and
        Bundler.require, to limit their impact to particular groups.
-
 
 
            # setup adds gems to Ruby's load path
@@ -208,7 +196,6 @@ GEMS
 
        To  specify  multiple  groups  to  ignore,  specify  a  list  of groups
        separated by spaces.
-
 
 
            bundle config set without test
@@ -260,7 +247,6 @@ GEMS
        that a gem should only be used on platforms with Ruby 2.3, use:
 
 
-
            ruby_23
 
 
@@ -279,7 +265,6 @@ GEMS
        As with groups, you can specify one or more platforms:
 
 
-
            gem "weakling",   :platforms => :jruby
            gem "ruby-debug", :platforms => :mri_18
            gem "nokogiri",   :platforms => [:mri_18, :jruby]
@@ -293,7 +278,6 @@ GEMS
    SOURCE
        You can select an alternate Rubygems repository for  a  gem  using  the
        ':source' option.
-
 
 
            gem "some_internal_gem", :source => "https://gems.example.com"
@@ -357,7 +341,6 @@ GEMS
        specifier. If not, bundler will print a warning.
 
 
-
            gem "rails", "2.3.8", :git => "https://github.com/rails/rails.git"
            # bundle install will fail, because the .gemspec in the rails
            # repository's master branch specifies version 3.0.0
@@ -395,7 +378,6 @@ GEMS
        .gemspec.
 
 
-
            |~rails                   [git root]
            | |-rails.gemspec         [rails gem located here]
            |~actionpack
@@ -419,14 +401,12 @@ GEMS
        address:
 
 
-
            git_source(:stash){ |repo_name| "https://stash.corp.acme.pl/#{repo_name}.git" }
            gem 'rails', :stash => 'forks/rails'
 
 
 
        In addition, if you wish to choose a specific branch:
-
 
 
            gem "rails", :stash => "forks/rails", :branch => "branch_name"
@@ -445,14 +425,12 @@ GEMS
        can omit one.
 
 
-
            gem "rails", :github => "rails/rails"
            gem "rails", :github => "rails"
 
 
 
        Are both equivalent to
-
 
 
            gem "rails", :git => "git://github.com/rails/rails.git"
@@ -468,13 +446,11 @@ GEMS
        (without the trailing ".git").
 
 
-
            gem "the_hatch", :gist => "4815162342"
 
 
 
        Is equivalent to:
-
 
 
            gem "the_hatch", :git => "https://gist.github.com/4815162342.git"
@@ -492,14 +468,12 @@ GEMS
        can omit one.
 
 
-
            gem "rails", :bitbucket => "rails/rails"
            gem "rails", :bitbucket => "rails"
 
 
 
        Are both equivalent to
-
 
 
            gem "rails", :git => "https://rails@bitbucket.org/rails/rails.git"
@@ -522,7 +496,6 @@ GEMS
        as paths.
 
 
-
            gem "rails", :path => "vendor/rails"
 
 
@@ -531,7 +504,6 @@ GEMS
        filesystem, you can set a global path option to the path containing the
        gem's  files.  This  will  automatically  load   gemspec   files   from
        subdirectories.
-
 
 
            path 'components' do
@@ -544,7 +516,6 @@ GEMS
 BLOCK FORM OF SOURCE, GIT, PATH, GROUP and PLATFORMS
        The :source, :git, :path, :group, and :platforms options may be applied
        to a group of gems by using block form.
-
 
 
            source "https://gems.example.com" do
@@ -588,7 +559,6 @@ INSTALL_IF
        The  install_if  method  allows gems to be installed based on a proc or
        lambda. This is especially useful for optional gems that  can  only  be
        used if certain software is installed or some other conditions are met.
-
 
 
            install_if -> { RUBY_PLATFORM =~ /darwin/ } do

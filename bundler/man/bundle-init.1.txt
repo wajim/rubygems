@@ -1,4 +1,4 @@
-BUNDLE-INIT(1)                                                  BUNDLE-INIT(1)
+BUNDLE-INIT(1)              General Commands Manual             BUNDLE-INIT(1)
 
 
 

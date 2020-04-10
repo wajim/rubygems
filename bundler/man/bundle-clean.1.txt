@@ -1,4 +1,4 @@
-BUNDLE-CLEAN(1)                                                BUNDLE-CLEAN(1)
+BUNDLE-CLEAN(1)             General Commands Manual            BUNDLE-CLEAN(1)
 
 
 

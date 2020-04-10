@@ -1,4 +1,4 @@
-BUNDLE-OPEN(1)                                                  BUNDLE-OPEN(1)
+BUNDLE-OPEN(1)              General Commands Manual             BUNDLE-OPEN(1)
 
 
 
@@ -15,7 +15,6 @@ DESCRIPTION
        to be set.
 
        Example:
-
 
 
            bundle open 'rack'

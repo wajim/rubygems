@@ -1,4 +1,4 @@
-BUNDLE-VIZ(1)                                                    BUNDLE-VIZ(1)
+BUNDLE-VIZ(1)               General Commands Manual              BUNDLE-VIZ(1)
 
 
 

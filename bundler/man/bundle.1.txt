@@ -1,4 +1,4 @@
-BUNDLE(1)                                                            BUNDLE(1)
+BUNDLE(1)                   General Commands Manual                  BUNDLE(1)
 
 
 
@@ -104,9 +104,9 @@ PLUGINS
 OBSOLETE
        These commands are obsolete and should no longer be used:
 
-       o   bundle cache(1)
+       O   bundle cache(1)
 
-       o   bundle show(1)
+       O   bundle show(1)
 
 
 

@@ -1,4 +1,4 @@
-BUNDLE-SHOW(1)                                                  BUNDLE-SHOW(1)
+BUNDLE-SHOW(1)              General Commands Manual             BUNDLE-SHOW(1)
 
 
 

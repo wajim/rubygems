@@ -1,4 +1,4 @@
-BUNDLE-EXEC(1)                                                  BUNDLE-EXEC(1)
+BUNDLE-EXEC(1)              General Commands Manual             BUNDLE-EXEC(1)
 
 
 
@@ -40,36 +40,36 @@ ENVIRONMENT MODIFICATIONS
        bundle  exec  makes  a number of changes to the shell environment, then
        executes the command you specify in full.
 
-       o   make sure that it's still possible to  shell  out  to  bundle  from
+       O   make sure that it's still possible to  shell  out  to  bundle  from
            inside a command invoked by bundle exec (using $BUNDLE_BIN_PATH)
 
-       o   put  the  directory  containing  executables  (like  rails,  rspec,
+       O   put  the  directory  containing  executables  (like  rails,  rspec,
            rackup) for your bundle on $PATH
 
-       o   make sure that if bundler is invoked in the subshell, it  uses  the
+       O   make sure that if bundler is invoked in the subshell, it  uses  the
            same Gemfile (by setting BUNDLE_GEMFILE)
 
-       o   add  -rbundler/setup  to  $RUBYOPT,  which  makes  sure  that  Ruby
+       O   add  -rbundler/setup  to  $RUBYOPT,  which  makes  sure  that  Ruby
            programs invoked in the subshell can see the gems in the bundle
 
 
 
        It also modifies Rubygems:
 
-       o   disallow loading additional gems not in the bundle
+       O   disallow loading additional gems not in the bundle
 
-       o   modify the gem  method  to  be  a  no-op  if  a  gem  matching  the
+       O   modify the gem  method  to  be  a  no-op  if  a  gem  matching  the
            requirements  is  in  the  bundle, and to raise a Gem::LoadError if
            it's not
 
-       o   Define Gem.refresh to be a no-op, since the source index is  always
+       O   Define Gem.refresh to be a no-op, since the source index is  always
            frozen  when  using  bundler,  and  to prevent gems from the system
            leaking into the environment
 
-       o   Override Gem.bin_path to use the gems in the bundle, making  system
+       O   Override Gem.bin_path to use the gems in the bundle, making  system
            executables work
 
-       o   Add all gems in the bundle into Gem.loaded_specs
+       O   Add all gems in the bundle into Gem.loaded_specs
 
 
 
@@ -99,7 +99,6 @@ ENVIRONMENT MODIFICATIONS
        inside a bundle:
 
 
-
            Bundler.with_clean_env do
              `brew install wget`
            end
@@ -112,7 +111,6 @@ ENVIRONMENT MODIFICATIONS
        different bundle also need to use with_clean_env.
 
 
-
            Bundler.with_clean_env do
              Dir.chdir "/other/bundler/project" do
                `bundle exec ./script`
@@ -123,7 +121,6 @@ ENVIRONMENT MODIFICATIONS
 
        Bundler  provides  convenience  helpers  that wrap system and exec, and
        they can be used like this:
-
 
 
            Bundler.clean_system('brew install wget')
@@ -153,7 +150,6 @@ RUBYGEMS PLUGINS
        If this happens, bundler will say:
 
 
-
            You have already activated json_pure 1.4.6 but your Gemfile
            requires json_pure 1.4.3. Consider using bundle exec.
 
@@ -165,7 +161,6 @@ RUBYGEMS PLUGINS
        that are more careful in their plugins.
 
        You can find a list of all the gems containing gem plugins by running
-
 
 
            ruby -rrubygems -e "puts Gem.find_files('rubygems_plugin.rb')"

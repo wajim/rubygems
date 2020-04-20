@@ -223,7 +223,7 @@ namespace :release do
     confirm "Continue? (y/n)"
 
     in_release.each do |pr|
-      url_opener = /darwin/ =~ RUBY_PLATFORM ? "open" : "xdg-open"
+      url_opener = /darwin/.match?(RUBY_PLATFORM) ? "open" : "xdg-open"
       url = "https://github.com/bundler/bundler/pull/#{pr}"
       print "#{url}. (n)ext/(o)pen? "
       system(url_opener, url, :out => IO::NULL, :err => IO::NULL) if $stdin.gets.strip == "o"

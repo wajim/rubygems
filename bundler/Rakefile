@@ -107,7 +107,7 @@ namespace :man do
       sources = Dir["man/*.ronn"].map {|f| File.basename(f, ".ronn") }
       sources.map do |basename|
         ronn = "man/#{basename}.ronn"
-        manual_section = ".1" unless basename =~ /\.(\d+)\Z/
+        manual_section = ".1" unless /\.(\d+)\Z/.match?(basename)
         roff = "man/#{basename}#{manual_section}"
 
         index << [ronn, File.basename(roff)]

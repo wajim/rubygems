@@ -217,7 +217,7 @@ module Bundler
         Bundler.ui.confirm "Do you want to generate tests with your gem?"
         result = Bundler.ui.ask "Type 'rspec', 'minitest' or 'test-unit' to generate those test files now and " \
           "in the future. rspec/minitest/test-unit/(none):"
-        if result =~ /rspec|minitest|test-unit/
+        if /rspec|minitest|test-unit/.match?(result)
           test_framework = result
         else
           test_framework = false
@@ -239,7 +239,7 @@ module Bundler
     end
 
     def ensure_safe_gem_name(name, constant_array)
-      if name =~ /^\d/
+      if /^\d/.match?(name)
         Bundler.ui.error "Invalid gem name #{name} Please give a name which does not start with numbers."
         exit 1
       end

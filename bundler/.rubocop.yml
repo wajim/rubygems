@@ -451,6 +451,8 @@ Performance/FixedSize:
 
 Performance/RegexpMatch:
   Enabled: true
+  Exclude:
+    - spec/support/indexes.rb
 
 Performance/ReverseEach:
   Enabled: true

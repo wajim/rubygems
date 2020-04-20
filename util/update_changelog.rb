@@ -54,7 +54,7 @@ File.open(File.expand_path('../../ChangeLog', __FILE__), 'w') do |changelog|
   commits = `git log --oneline v#{Gem::VERSION}..#{branch}`.split("\n")
   prs = commits.reverse_each.map { |c| c =~ /(Auto merge of|Merge pull request|Merge) #(\d+)/ && $2 }.compact.uniq.sort!
   prs.each do |pr|
-    next if history =~ /Pull\srequest\s##{pr}/m
+    next if /Pull\srequest\s##{pr}/m.match?(history)
     details = github_api "/repos/rubygems/rubygems/pulls/#{pr}"
     title, user = details.values_at('title', 'user')
     user = github_api(user['url'])

@@ -1153,7 +1153,7 @@ class Gem::Specification < Gem::BasicSpecification
 
   def self.normalize_yaml_input(input)
     result = input.respond_to?(:read) ? input.read : input
-    result = "--- " + result unless result =~ /\A--- /
+    result = "--- " + result unless /\A--- /.match?(result)
     result = result.dup
     result.gsub!(/ !!null \n/, " \n")
     # date: 2011-04-26 00:00:00.000000000Z

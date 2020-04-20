@@ -556,10 +556,10 @@ abort "#{deprecation_message}"
     lib_dirs[File.join(lib_dir, 'bundler')] = 'bundler/lib/bundler'
     lib_dirs.each do |old_lib_dir, new_lib_dir|
       lib_files = rb_files_in(new_lib_dir)
-      lib_files.concat(template_files_in(new_lib_dir)) if new_lib_dir =~ /bundler/
+      lib_files.concat(template_files_in(new_lib_dir)) if /bundler/.match?(new_lib_dir)
 
       old_lib_files = rb_files_in(old_lib_dir)
-      old_lib_files.concat(template_files_in(old_lib_dir)) if old_lib_dir =~ /bundler/
+      old_lib_files.concat(template_files_in(old_lib_dir)) if /bundler/.match?(old_lib_dir)
 
       to_remove = old_lib_files - lib_files
 

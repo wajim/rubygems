@@ -295,7 +295,7 @@ class Gem::DependencyInstaller
         src = Gem::Source::SpecificFile.new dep_or_name
         installer_set.add_local dep_or_name, src.spec, src
         version = src.spec.version if version == Gem::Requirement.default
-      elsif /\.gem$/.match?(dep_or_name)
+      elsif dep_or_name =~ /\.gem$/
         Dir[dep_or_name].each do |name|
           begin
             src = Gem::Source::SpecificFile.new name

@@ -85,6 +85,9 @@ Lint/ParenthesesAsGroupedExpression:
 
 Performance/RegexpMatch:
   Enabled: true
+  Exclude:
+    - lib/rubygems/dependency_installer.rb
+    - lib/rubygems/resolver.rb
 
 Style/MethodDefParentheses:
   Enabled: true

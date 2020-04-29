@@ -11,6 +11,10 @@ if File.exist?(bundler_gemspec)
   Gem::Specification.dirs.shift
 end
 
+dev_gems_path = File.expand_path("../../.bundle/#{Gem.ruby_engine}/#{RbConfig::CONFIG["ruby_version"]}", __dir__)
+
+Gem.use_paths(dev_gems_path)
+
 begin
   gem 'minitest', '~> 5.13'
 rescue Gem::LoadError

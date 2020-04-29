@@ -1,2 +1,2 @@
 ---
-BUNDLE_PATH__SYSTEM: "true"
+BUNDLE_PATH: .bundle

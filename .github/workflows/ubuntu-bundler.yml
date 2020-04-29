@@ -6,6 +6,7 @@ on:
   push:
     branches:
       - master
+      - mt_no_plugins
 
 jobs:
   ubuntu_bundler:

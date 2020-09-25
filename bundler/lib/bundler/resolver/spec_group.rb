@@ -59,6 +59,10 @@ module Bundler
         "#{name} (#{version}) (#{activated_platforms_string})"
       end
 
+      def inspect
+        to_s
+      end
+
       def dependencies_for_activated_platforms
         dependencies = @activated_platforms.map {|p| __dependencies[p] }
         metadata_dependencies = @activated_platforms.map do |platform|

@@ -102,11 +102,13 @@ module Spec
       old_gemfile = ENV["BUNDLE_GEMFILE"]
       ENV["BUNDLE_GEMFILE"] = gemfile.to_s
       require "bundler"
+      Bundler.settings.set_command_option(:gemfile, gemfile.to_s)
       definition = Bundler::Definition.build(gemfile, lockfile, nil)
       definition.validate_runtime!
       Bundler::Installer.install(Path.source_root, definition, :path => ENV["GEM_HOME"])
     ensure
       ENV["BUNDLE_GEMFILE"] = old_gemfile
+      Bundler.settings.set_command_option(:gemfile, old_gemfile)
     end
 
     def test_gemfile

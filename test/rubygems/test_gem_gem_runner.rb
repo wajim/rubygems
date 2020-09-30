@@ -74,7 +74,7 @@ class TestGemGemRunner < Gem::TestCase
     args = %w[query]
 
     use_ui @ui do
-      assert_nil @runner.run(args)
+      @runner.run(args)
     end
 
     assert_match(/WARNING:  query command is deprecated. It will be removed in Rubygems [0-9]+/, @ui.error)
@@ -84,7 +84,7 @@ class TestGemGemRunner < Gem::TestCase
     args = %w[info]
 
     use_ui @ui do
-      assert_nil @runner.run(args)
+      @runner.run(args)
     end
 
     assert_empty @ui.error
@@ -94,7 +94,7 @@ class TestGemGemRunner < Gem::TestCase
     args = %w[list]
 
     use_ui @ui do
-      assert_nil @runner.run(args)
+      @runner.run(args)
     end
 
     assert_empty @ui.error
@@ -104,7 +104,7 @@ class TestGemGemRunner < Gem::TestCase
     args = %w[search]
 
     use_ui @ui do
-      assert_nil @runner.run(args)
+      @runner.run(args)
     end
 
     assert_empty @ui.error

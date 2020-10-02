@@ -87,9 +87,9 @@ class Bundler::Dir < Dir
   #
   def self.mktmpdir(prefix_suffix=nil, *rest, **options)
     base = nil
-    path = Tmpname.create(prefix_suffix || "d", *rest, **options) {|path, _, _, d|
+    path = Tmpname.create(prefix_suffix || "d", *rest, **options) {|p, _, _, d|
       base = d
-      mkdir(path, 0700)
+      mkdir(p, 0700)
     }
     if block_given?
       begin

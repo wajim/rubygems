@@ -369,4 +369,32 @@ RSpec.describe "bundler/inline#gemfile" do
     expect(out).to eq("WIN")
     expect(err).to be_empty
   end
+
+  it "when requiring fileutils after", :rubygems => ">= 3.2.0.rc.1" do
+    skip "does not work on ruby 3.0 because it changes the path to look for default gems, tsort is a default gem there, and we can't install it either like we do with fiddle because it doesn't yet exist" unless RUBY_VERSION < "3.0.0"
+
+    Dir.mkdir tmp("path_without_gemfile")
+
+    default_fileutils_version = ruby "gem 'fileutils', '< 999999'; require 'fileutils'; puts FileUtils::VERSION", :raise_on_error => false
+    skip "fileutils isn't a default gem" if default_fileutils_version.empty?
+
+    realworld_system_gems "fileutils --version 1.4.1"
+
+    build_repo2 do
+      # simulate executable for default gem
+      build_gem "fileutils", default_fileutils_version, :to_system => true, :default => true
+    end
+
+    realworld_system_gems "fiddle"
+
+    script <<-RUBY, :dir => tmp("path_without_gemfile")
+      gemfile do
+        source "#{file_uri_for(gem_repo2)}"
+      end
+
+      require "fileutils"
+    RUBY
+
+    expect(err).to be_empty
+  end
 end
